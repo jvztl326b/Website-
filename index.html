@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jvztl</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: #fff;
+        }
+        
+        #nyan-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.7;
+        }
+        
+        .message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 80%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        
+        .discord-handle {
+            font-size: 1.8em;
+            color: #7289da;
+            font-weight: bold;
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div id="nyan-container"></div>
+    
+    <div class="message">
+        <h1>This website belongs to</h1>
+        <div class="discord-handle">@jvztl on Discord</div>
+    </div>
+    
+    <div class="footer">
+        Powered by Nyan Cat technology
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script
+        function setup() {
+            let canvas = createCanvas(windowWidth, windowHeight);
+            canvas.position(0, 0);
+            canvas.style('z-index', '-1');
+            noStroke();
+        }
+        
+        function draw() {
+            clear();
+            
+            for (let i = 0; i < 6; i++) {
+                fill(
+                    map(sin(frameCount * 0.05 + i), -1, 1, 150, 200),
+                    map(sin(frameCount * 0.05 + i + 2), -1, 1, 150, 200),
+                    map(sin(frameCount * 0.05 + i + 4), -1, 1, 150, 200)
+                );
+                rect(
+                    (frameCount * 3 + i * 30) % (width + 200) - 100,
+                    height / 2 - 10,
+                    80,
+                    20
+                );
+            }
+          
+            fill(255);
+            ellipse((frameCount * 3) % (width + 200) - 100, height / 2, 60, 40);
+            
+            fill(255);
+            ellipse((frameCount * 3) % (width + 200) - 130, height / 2 - 5, 30, 30);
+            
+            triangle(
+                (frameCount * 3) % (width + 200) - 140, height / 2 - 15,
+                (frameCount * 3) % (width + 200) - 130, height / 2 - 30,
+                (frameCount * 3) % (width + 200) - 120, height / 2 - 15
+            );
+            triangle(
+                (frameCount * 3) % (width + 200) - 120, height / 2 - 15,
+                (frameCount * 3) % (width + 200) - 110, height / 2 - 30,
+                (frameCount * 3) % (width + 200) - 100, height / 2 - 15
+            );
+        }
+        
+        function windowResized() {
+            resizeCanvas(windowWidth, windowHeight);
+        }
+    </script>
+</body>
+    </html>
